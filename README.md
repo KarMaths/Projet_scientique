@@ -2,7 +2,7 @@
 
  Pathfinding Algorithms in Julia
  This repo is the code used in [my github page videos](https://github.com/KarMaths) who served as foundation of this repo.
- Many changes will be made after ...
+ Many changes will be made after ... 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
 
 # Description
     This project implements several pathfinding algorithms in Julia to find the shortest path between two points on a given map. 
@@ -65,3 +65,4 @@ Output Example
     Number of states evaluated
 
     Path from source to target
+# projet_path_finding

@@ -16,13 +16,15 @@ end
 # Function cost movement 
 function movement_cost(value::Char)
     if value == '@' 
-        return 5.0
-    elseif value == 'T' 
+        return Inf
+    elseif value == 'W' 
         return 8.0
-    elseif value =='.'
-        return 1.0
-    else
+    elseif value =='S'
+        return 5.0
+    elseif value =='T'
         return 10.0
+    else
+        return 1.0
     end 
 end 
 
