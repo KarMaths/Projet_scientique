@@ -62,7 +62,7 @@ function read_graph_from_file(filename::String)
 
             for (dx,dy) in directions 
                 (nx,ny)=(x + dx, y + dy)
-                if nx>=1 && nx<=width && ny>=1 && ny<=height # && grid[ny][nx] != '@'
+                if nx>=1 && nx<=width && ny>=1 && ny<=height  && grid[ny][nx] != '@'
                     neighbor_position=(nx,ny)
                     cost = movement_cost(grid[ny][nx])
                     neighborhood[neighbor_position] = cost 
@@ -162,7 +162,6 @@ function Breadth_First_Search(graph::Graph, source::Tuple{Int64, Int64}, target:
                 previous[neighbor] = current
                 mark[neighbor] = true  
                 push!(tail, neighbor) 
-                #enqueue!(tail,neighbor, shortest_path[neighbor])
             end
         end
     end
@@ -306,7 +305,7 @@ function algo_dijkstra(filename::String, source::Tuple{Int64, Int64}, target::Tu
     start_time = time()
     previous, distance, count = dijkstra(graph, source, target)
     end_time = time()
-
+    
     println("_______________DIJKSTRA______________")
     println("\nSolution :")
     @printf("CPUtime (s)                :   %.1e\n", end_time - start_time)
@@ -314,7 +313,9 @@ function algo_dijkstra(filename::String, source::Tuple{Int64, Int64}, target::Tu
     println("Number of states evaluated :   ", count)
     print("Path ", source, " → ", target)
     println()
-    print_shortest_path(previous, target)
+    if previous !== nothing
+        print_shortest_path(previous, target)
+    end 
 end
 
 #  principal function BFS
@@ -328,7 +329,7 @@ function algo_bfs(filename::String, source::Tuple{Int64, Int64}, target::Tuple{I
     println("_______________Breadth_First_Search______________")
     println("\nSolution :")
     @printf("CPUtime (s)                 :   %.1e\n", end_time - start_time)
-    println("Distance ", source, " → ", target, " :   ", Int64(distance[target]))
+    println("Distance ", source, " → ", target, " :   ",(distance[target]))
     println("Number of states evaluated  :   ", visited_count)
     print("Path ", source, " → ", target)
     println()
@@ -360,24 +361,25 @@ function algo_greedy_bfs(filename::String, source::Tuple{Int64, Int64}, target::
     start_time = time()
     d,previous, evaluated_states = greedy_best_first_search(graph, source, target)
     end_time = time()
-
+    
     println("_______________Greedy Best-First Search______________")
     println("\nSolution :")
-    @printf("CPU time (s)                  :   %.1e\n", round(end_time - start_time, sigdigits=5)) 
-    println("Distance ", source, " → ", target, "   :   ", d)
+    @printf("CPU time (s)                  :   %.1e\n", round(end_time - start_time)) 
+    println("Distance ", source, " → ", target, "     :   ", d)
     println("Number of states evaluated    :   ", evaluated_states)
     print("Path ", source, " → ", target)
     println()
-    print_shortest_path(previous, target)
+    if previous !== nothing
+        print_shortest_path(previous, target)
+    end
 end
 
 # Appeler la fonction 
+#=
 
-#algo_dijkstra("didactic0.txt", (12,5), (2,12))
-#algo_bfs("didactic0.txt", (12,5), (2,12))
-#algo_a_star("didactic0.txt", (12,5), (2,12))
-#algo_greedy_bfs("didactic0.txt", (12,3), (2,12))
+algo_dijkstra("didactic0.txt", (12,5), (2,12))
+algo_bfs("didactic0.txt", (12,5), (2,12))
+algo_a_star("didactic0.txt", (12,5), (2,12))
+algo_greedy_bfs("didactic0.txt", (12,3), (2,12))
 
-algo_greedy_bfs("theglaive.map.txt", (7,3), (2,12))
-#algo_a_star("32room_004.map", (52,14), (2,20))
-#algo_bfs("32room_004.map", (52,14), (2,20))
+=#
