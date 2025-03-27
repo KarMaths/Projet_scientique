@@ -1,0 +1,48 @@
+Ce passage traite de la recherche sous-optimale bornée (Bounded Suboptimal Search - BSS) et des algorithmes permettant de trouver des chemins quasi-optimaux de manière efficace. Voici un résumé clair :
+Concepts Clés
+
+    Recherche Optimale vs. Sous-Optimale :
+
+        L'algorithme A* trouve toujours un chemin optimal, mais peut être lent.
+
+        Pour certaines applications (jeux vidéo, systèmes embarqués), un résultat rapide mais sous-optimal est préférable.
+
+    Recherche Sous-Optimale Bornée (BSS) :
+
+        Garantit que le coût de la solution ne dépasse pas B(C*), où C* est le coût optimal.
+
+        Une fonction de borne courante est Bw(x) = wx, ce qui signifie que le coût est compris dans [C*, wC*].
+
+    Algorithmes BSS :
+
+        Weighted A* (WA*) (Pohl, 1970)
+
+        Aε (Pearl & Kim, 1982)
+
+        Optimistic Search (Thayer & Ruml, 2008)
+
+        EES (Thayer & Ruml, 2011)
+
+        DPS (Gilon, Felner & Stern, 2016)
+
+    Différentes Fonctions de Borne :
+
+        Multiplicative : Bw(x) = wx (la plus courante).
+
+        Additive : Bγ(x) = x + γ (mais nécessite des réouvertures de nœuds coûteuses).
+
+    Avancées Récentes (Chen & Sturtevant, 2019) :
+
+        Introduction des fonctions de priorité XDP et XUP pour améliorer WA*.
+
+        Étude des conditions suffisantes pour éviter la ré-expansion des nœuds.
+
+    Limitations et Améliorations :
+
+        Initialement, les fonctions de priorité devaient être différentiables.
+
+        Nouvelle recherche étendue aux fonctions non différentiables.
+
+        Prouve que les heuristiques cohérentes sont nécessaires pour éviter les réouvertures de nœuds.
+
+        Applique ces résultats à d’autres fonctions de borne, au-delà de Bw.
